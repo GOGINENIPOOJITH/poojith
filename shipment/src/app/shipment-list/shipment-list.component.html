@@ -1,0 +1,32 @@
+<div>
+    <h1>SHIPMENT TABLE </h1>
+    <input type="text" placeholder="search by id or sender" (input)="searchShipment($event)" />
+    <button (click)="sortingByAsc()">sort</button>
+    <button [routerLink]="['/shipment-form']">Add New Shipment</button>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Status</th>
+            <th>Expected Delivery</th>
+            <th>View Shipment</th>
+            <th>Edit Shipment</th>
+            <th>Delete Shipment</th>
+        </tr>
+        <tr *ngFor="let shipment of filteredShipments$ | async">
+            <td>{{shipment.id}}</td>
+            <td>{{shipment.sender}}</td>
+            <td>{{shipment.receiver}}</td>
+            <td>{{shipment.origin}}</td>
+            <td>{{shipment.destination}}</td>
+            <td>{{shipment.status}}</td>
+            <td>{{shipment.expectedDelivery}}</td>
+            <td><button [routerLink]="['/shipment-details/',shipment.id]">View</button></td>
+            <td><button [routerLink]="['/shipment-update/',shipment.id]">Edit</button></td>
+            <td><button (click)="deleteShipment(shipment.id)">Delete</button></td>
+        </tr>
+    </table>
+</div>

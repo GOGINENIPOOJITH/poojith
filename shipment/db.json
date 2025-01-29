@@ -1,0 +1,35 @@
+{
+  "Shipment": [
+    {
+      "id": "1",
+      "sender": "manikanta",
+      "receiver": "gbokash doe",
+      "origin": "kdelhi",
+      "destination": "cfasinapur",
+      "status": "In Transit",
+      "expectedDelivery": "2025-02-05"
+    },
+    {
+      "id": "2",
+      "sender": "Alice Johnson",
+      "receiver": "Bob Brown",
+      "origin": "Chennai, India",
+      "destination": "London, UK",
+      "status": "Delivered",
+      "expectedDelivery": "2025-01-28"
+  },
+  {
+    "id": "3",
+    "sender": "David Smith",
+    "receiver": "Emma Wilson",
+    "origin": "Bangalore, India",
+    "destination": "Sydney, Australia",
+    "status": "Pending",
+    "expectedDelivery": "2025-02-10"
+}
+
+  
+  
+    
+  ]
+}
