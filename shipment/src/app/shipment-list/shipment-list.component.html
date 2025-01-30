@@ -2,8 +2,8 @@
     <h1>SHIPMENT TABLE </h1>
     <input type="text" placeholder="search by id or sender" (input)="searchShipment($event)" />
     <button (click)="sortingByAsc()">sort</button>
-    <button [routerLink]="['/shipment-form']">Add New Shipment</button>
-    <table>
+    <button [routerLink]="['add']">Add New Shipment</button>
+    <table border="1px">
         <tr>
             <th>Id</th>
             <th>Sender</th>
@@ -24,8 +24,8 @@
             <td>{{shipment.destination}}</td>
             <td>{{shipment.status}}</td>
             <td>{{shipment.expectedDelivery}}</td>
-            <td><button [routerLink]="['/shipment-details/',shipment.id]">View</button></td>
-            <td><button [routerLink]="['/shipment-update/',shipment.id]">Edit</button></td>
+            <td><button [routerLink]="['/view/',shipment.id]">View</button></td>
+            <td><button [routerLink]="['/update/',shipment.id]">Edit</button></td>
             <td><button (click)="deleteShipment(shipment.id)">Delete</button></td>
         </tr>
     </table>

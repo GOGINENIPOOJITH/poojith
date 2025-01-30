@@ -50,7 +50,7 @@ export class ShipmentListComponent implements OnInit {
 
   }
   sortingByAsc(){
-    this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>a.id.toLocaleLowerCase().localeCompare(b.id))));
+    this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>a.sender.toLocaleLowerCase().localeCompare(b.sender))));
     this.shipments$=this.filteredShipments$;
     
     

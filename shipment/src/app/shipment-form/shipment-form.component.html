@@ -1,1 +1,69 @@
-<p>shipment-form works!</p>
+<div class="form-container">
+    <form [formGroup]="fg" (ngSubmit)="addform()">
+      <div class="form-group">
+        <label for="sender">Sender:</label>
+        <input type="text" id="sender" formControlName="sender">
+        <div *ngIf="fg.get('sender')?.hasError('required') && fg.get('sender')?.touched" class="error">
+          Sender is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="receiver">Receiver:</label>
+        <input type="text" id="receiver" formControlName="receiver">
+        <div *ngIf="fg.get('receiver')?.hasError('required') && fg.get('receiver')?.touched" class="error">
+          Receiver is required.
+        </div>
+        <div *ngIf="fg.get('receiver')?.hasError('min') && fg.get('receiver')?.touched" class="error">
+          Receiver is not valid
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" formControlName="origin">
+        <div *ngIf="fg.get('origin')?.hasError('required') && fg.get('origin')?.touched" class="error">
+          Origin is required.
+        </div>
+        <div *ngIf="fg.get('origin')?.hasError('min') && fg.get('origin')?.touched" class="error">
+            Origin is not valid
+        </div>
+      </div>  
+      
+      <div class="form-group">
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" formControlName="destination">
+        <div *ngIf="fg.get('destination')?.hasError('required') && fg.get('destination')?.touched" class="error">
+            Destination is required.
+        </div>
+        <div *ngIf="fg.get('destination')?.hasError('min') && fg.get('destination')?.touched" class="error">
+            Destination is not valid
+        </div>
+      </div> 
+
+ 
+
+
+      <div class="form-group">
+        <label for="condition">Status:</label>
+        <select formControlName="status">
+            <option *ngFor="let option of shipmentStatus" [value]="option">{{ option }}</option>
+        </select>
+       
+      </div>
+
+      <div class="form-group">
+        <label for="expectedDelivery">Expected Delivery</label>
+        <input type="text" id="expectedDelivery" formControlName="expectedDelivery">
+        <div *ngIf="fg.get('expectedDelivery')?.hasError('required') && fg.get('expectedDelivery')?.touched" class="error">
+            Expected Delivery is required.
+        </div>
+        <div *ngIf="fg.controls['expectedDelivery'].invalid && (fg.controls['expectedDelivery'].dirty || fg.controls['expectedDelivery'].touched)" class="error">
+            Expected Delivery must be in YYYY-MM-DD format.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="fg.invalid">Submit</button>
+    </form>
+  </div>
+  

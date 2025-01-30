@@ -1,1 +1,10 @@
-<p>shipment-details works!</p>
+<div class="shipment" *ngIf="shipments$ | async as shipment">
+    <p>Id : {{ shipment.id }}</p>
+      <p>Sender : {{ shipment.sender }}</p>
+      <p>Origin : {{ shipment.origin }}</p>
+      <p>Destination : {{ shipment.destination }}</p>
+      <p>Receiver : {{ shipment.receiver }}</p>
+      <p>Status : {{ shipment.status }}</p>
+      <p>Expected Delivery : {{ shipment.expectedDelivery  }}</p>
+</div>
+     
