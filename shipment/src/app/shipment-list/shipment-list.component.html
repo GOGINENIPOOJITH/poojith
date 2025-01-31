@@ -1,9 +1,10 @@
 <div>
     <h1>SHIPMENT TABLE </h1>
-    <input type="text" placeholder="search by id or sender" (input)="searchShipment($event)" />
-    <button (click)="sortingByAsc()">sort</button>
+    <input type="text" placeholder="search by id or sender" [(ngModel)]="searchText" (input)="searchShipment()"/>
+    <button (click)="sortingByAsc()">Sort By Asc</button>
+    <button (click)="sortingBydesc()">Sort By Desc</button>
     <button [routerLink]="['add']">Add New Shipment</button>
-    <table border="1px">
+    <table border="1px" >
         <tr>
             <th>Id</th>
             <th>Sender</th>

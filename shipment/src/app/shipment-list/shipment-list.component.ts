@@ -12,6 +12,7 @@ export class ShipmentListComponent implements OnInit {
 
   shipments$: Observable<any[]> = of([]);
   filteredShipments$: Observable<any[]> = of([]);
+  searchText: string='';
   
   
   constructor(private ss: ShipmentService){}
@@ -36,25 +37,30 @@ export class ShipmentListComponent implements OnInit {
     });
   }
 
-  searchShipment(s: any){
-    const searchingTerm=s.target.value.trim();
-    if(!searchingTerm)
+  searchShipment(){
+  if(!this.searchText)
     {
       this.filteredShipments$=this.shipments$;
     }
     this.filteredShipments$=this.shipments$.pipe(map((s1)=> {
-      return s1.filter((ship)=> ship.id.toLowerCase.toString().includes(searchingTerm) ||
-                                 ship.sender.toLowerCase().toString().includes(searchingTerm))
+      return s1.filter((ship)=> ship.id.toLowerCase.toString().includes(this.searchText) ||
+                                 ship.sender.toLowerCase().toString().includes(this.searchText))
     }));
     
 
   }
   sortingByAsc(){
-    this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>a.sender.toLocaleLowerCase().localeCompare(b.sender))));
+    this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>a.id.toLocaleLowerCase().localeCompare(b.id))));
     this.shipments$=this.filteredShipments$;
     
     
   }
 
 
+sortingBydesc(){
+    this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>b.sender.toLocaleLowerCase().localeCompare(a.sender))));
+    // this.shipments$=this.filteredShipments$;
+
+
+}
 }

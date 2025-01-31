@@ -50,7 +50,7 @@ export class ShipmentUpdateComponent {
     this.route.params.subscribe(r=>{
       this.shipmentId = r['id'];
       this.ss.getShipment(this.shipmentId).subscribe(d=>{
-        this.updateForm.patchValue(d);
+        this.updateForm.patchValue(d[0]);
       });
     })
     

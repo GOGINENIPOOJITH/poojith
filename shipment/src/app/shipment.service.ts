@@ -9,6 +9,7 @@ import { Observable, map } from 'rxjs';
 })
 export class ShipmentService {
   private apiUrl ="https://silver-fortnight-74v7vjwjrp63x74j-3000.app.github.dev/Shipment";
+
   constructor(private http: HttpClient) {}
 
   addShipment(shipment: Shipment): Observable<any>
@@ -18,18 +19,28 @@ export class ShipmentService {
 
   getShipments(): Observable<any>
   {
-      return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl);
   }
 
   getShipment(id: any): Observable<any>
   {
-    return this.http.get<any>(this.apiUrl +"/"+ id);
+    return this.http.get<any>(this.apiUrl +"/"+ id).pipe(map((data)=>
+    {
+      if(Array.isArray(data))
+      {
+        return data;
+      }
+      else
+      {
+        return [data];
+      }
+    }));
 
   }
 
   updateShipment(id: any,shipment: Shipment): Observable<any>
   {
-    return this.http.put<any>(this.apiUrl + "/"+id,shipment);
+    return this.http.put<any>(this.apiUrl + "/" + id,shipment);
   }
 
   deleteShipment(id: any): Observable<any>

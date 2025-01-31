@@ -1,5 +1,5 @@
-<div class="shipment" *ngIf="shipments$ | async as shipment">
-    <p>Id : {{ shipment.id }}</p>
+<div  *ngFor="let shipment of shipments$ | async">
+      <p>Id : {{ shipment.id }}</p>
       <p>Sender : {{ shipment.sender }}</p>
       <p>Origin : {{ shipment.origin }}</p>
       <p>Destination : {{ shipment.destination }}</p>

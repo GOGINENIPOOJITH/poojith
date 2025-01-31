@@ -1,50 +1,45 @@
-<div class="form-container">
-    <form [formGroup]="updateForm" (ngSubmit)="updateform()">
-      <div class="form-group">
+<div>
+  <form [formGroup]="updateForm" (ngSubmit)="updateform()">
+      <div>
         <label for="sender">Sender:</label>
         <input type="text" id="sender" formControlName="sender">
-        <div *ngIf="updateForm.get('sender')?.hasError('required') && updateForm.get('sender')?.touched" class="error">
-          Sender is required.
-        </div>
+          <div *ngIf="updateForm.get('sender')?.invalid && updateForm.get('sender')?.touched || updateForm.get('sender')?.dirty" >
+            <div *ngIf = "updateForm.get('sender')?.errors?.['required']"> Sender is Required </div>
+          </div>
       </div>
   
-      <div class="form-group">
-        <label for="receiver">Receiver:</label>
-        <input type="text" id="receiver" formControlName="receiver">
-        <div *ngIf="updateForm.get('receiver')?.hasError('required') && updateForm.get('receiver')?.touched" class="error">
-          Receiver is required.
-        </div>
-        <div *ngIf="updateForm.get('receiver')?.hasError('min') && updateForm.get('receiver')?.touched" class="error">
-          Receiver is not valid
-        </div>
-      </div>
+      <div>
+         <label for="receiver">Receiver:</label>
+         <input type="text" id="receiver" formControlName="receiver">
+          <div *ngIf="updateForm.get('receiver')?.invalid && updateForm.get('receiver')?.touched">
+            <div *ngIf="updateForm.get('receiver')?.errors?.['required']"> Receiver is Required</div>
+            <div *ngIf="updateForm.get('receiver')?.errors?.['minlength']">Minimum Length is Three</div>
+          </div>
+       </div>
 
-      <div class="form-group">
+      <div>
         <label for="origin">Origin:</label>
         <input type="text" id="origin" formControlName="origin">
-        <div *ngIf="updateForm.get('origin')?.hasError('required') && updateForm.get('origin')?.touched" class="error">
-          Origin is required.
+        <div *ngIf="updateForm.get('origin')?.invalid && updateForm.get('origin')?.touched" >
+          <div *ngIf="updateForm.get('origin')?.errors?.['required']">Origin Is required</div>
+          <div *ngIf ="updateForm.get('origin')?.errors?.['minlength']">Minimum Length is one</div>
         </div>
-        <div *ngIf="updateForm.get('origin')?.hasError('min') && updateForm.get('origin')?.touched" class="error">
-            Origin is not valid
-        </div>
+        
       </div>  
       
-      <div class="form-group">
+      <div>
         <label for="destination">Destination:</label>
         <input type="text" id="destination" formControlName="destination">
-        <div *ngIf="updateForm.get('destination')?.hasError('required') && updateForm.get('destination')?.touched" class="error">
-            Destination is required.
-        </div>
-        <div *ngIf="updateForm.get('destination')?.hasError('min') && updateForm.get('destination')?.touched" class="error">
-            Destination is not valid
+        <div *ngIf="updateForm.get('destination')?.invalid && updateForm.get('destination')?.touched">
+           <div *ngIf="updateForm.get('destination')?.errors?.['required']">Destination is Required</div>
+           <div *ngIf="updateForm.get('destination')?.errors?.['minlength']">Min Length is Two</div>
         </div>
       </div> 
 
  
 
 
-      <div class="form-group">
+      <div>
         <label for="condition">Status:</label>
         <select formControlName="status">
             <option *ngFor="let option of shipmentStatus" [value]="option">{{ option }}</option>
@@ -52,18 +47,15 @@
        
       </div>
 
-      <div class="form-group">
+      <div>
         <label for="expectedDelivery">Expected Delivery</label>
         <input type="text" id="expectedDelivery" formControlName="expectedDelivery">
-        <div *ngIf="updateForm.get('expectedDelivery')?.hasError('required') && updateForm.get('expectedDelivery')?.touched" class="error">
-            Expected Delivery is required.
-        </div>
-        <div *ngIf="updateForm.controls['expectedDelivery'].invalid && (updateForm.controls['expectedDelivery'].dirty || updateForm.controls['expectedDelivery'].touched)" class="error">
-            Expected Delivery must be in YYYY-MM-DD format.
+        <div *ngIf="updateForm.get('expectedDelivery')?.invalid && updateForm.get('expectedDelivery')?.touched">
+          <div *ngIf="updateForm.get('expectedDelivery')?.errors?.['required']"> Expected Delivery Is Required.</div>
+          <div *ngIf="updateForm.get('expectedDelivery')?.errors?.['invalids']"> Date Should Be In YYYY-DD-MM</div>
         </div>
       </div>
-  
-      <button type="submit" [disabled]="updateForm.invalid">Submit</button>
-    </form>
-  </div>
-  
+      <button type="submit" [disabled]="updateForm.invalid">ADD FORM</button>
+  </form>
+</div>
+   

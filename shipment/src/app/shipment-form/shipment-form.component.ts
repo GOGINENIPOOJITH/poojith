@@ -10,19 +10,19 @@ import { Router } from '@angular/router';
 })
 export class ShipmentFormComponent implements OnInit
  {
-  fg!: FormGroup
+  addForm!: FormGroup
   shipmentStatus=['Pending','In-Transit','Delivered'];
   constructor(private ss: ShipmentService,private fb: FormBuilder,private router: Router){}
   
  
   ngOnInit(): void {
 
-    this.fg = this.fb.group({
+    this.addForm = this.fb.group({
 
       sender: ['',Validators.required],
-      receiver:['',[Validators.required,Validators.min(3)]],
-      origin:['',[Validators.required,Validators.min(1)]],
-      destination:['',[Validators.required,Validators.min(2)]],
+      receiver:['',[Validators.required,Validators.minLength(3)]],
+      origin:['',[Validators.required,Validators.minLength(1)]],
+      destination:['',[Validators.required,Validators.minLength(2)]],
       status:[this.shipmentStatus],
       expectedDelivery:['',[Validators.required,this.dateValidator]]
     })
@@ -36,7 +36,7 @@ export class ShipmentFormComponent implements OnInit
 
       if(!datepattern.test(control.value))
       {
-        return{invalid: true};
+        return{invalids: true};
       }
       return null;
 
@@ -44,13 +44,13 @@ export class ShipmentFormComponent implements OnInit
 
 
 
-    addform()
+    OnSubmit()
     {
 
-    if(this.fg.valid)
+    if(this.addForm.valid)
     {
-      this.ss.addShipment(this.fg.value).subscribe(()=>{
-        this.router.navigate([`/`]);
+      this.ss.addShipment(this.addForm.value).subscribe(()=>{
+        this.router.navigate(['/']);
       })
     }
 
