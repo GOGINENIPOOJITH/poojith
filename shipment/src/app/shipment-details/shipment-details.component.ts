@@ -10,11 +10,11 @@ import { Shipment } from '../shipment';
   styleUrls: ['./shipment-details.component.css']
 })
 export class ShipmentDetailsComponent implements OnInit {
-shipments$: Observable<any> = of();
+shipments$: Observable<any[]> = of([]);
 shipmentId: any;
 
   
- constructor(private ss: ShipmentService,private router:Router,private route:ActivatedRoute) {}
+ constructor(private ss: ShipmentService,private route:ActivatedRoute) {}
 
 
   ngOnInit(): void
@@ -32,7 +32,7 @@ shipmentId: any;
 
   getShipment(id: any)
   {
-    this.shipments$ =this.ss.getShipment(id);
+    this.shipments$=this.ss.getShipment(id);
 
   }
 

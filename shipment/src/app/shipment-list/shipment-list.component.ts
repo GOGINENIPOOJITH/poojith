@@ -37,29 +37,31 @@ export class ShipmentListComponent implements OnInit {
     });
   }
 
-  searchShipment(){
-  if(!this.searchText)
-    {
-      this.filteredShipments$=this.shipments$;
-    }
-    this.filteredShipments$=this.shipments$.pipe(map((s1)=> {
-      return s1.filter((ship)=> ship.id.toLowerCase.toString().includes(this.searchText) ||
-                                 ship.sender.toLowerCase().toString().includes(this.searchText))
-    }));
+  // searchShipment(){
+  // if(!this.searchText)
+  //   {
+  //     this.filteredShipments$=this.shipments$;
+  //   }
+  //   this.filteredShipments$=this.shipments$.pipe(map((s1)=> {
+  //     return s1.filter((ship)=> ship.id.toLowerCase.toString().includes(this.searchText) ||
+  //                                ship.sender.toLowerCase().toString().includes(this.searchText))
+  //   }));
     
 
-  }
+  // }
   sortingByAsc(){
     this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>a.id.toLocaleLowerCase().localeCompare(b.id))));
-    this.shipments$=this.filteredShipments$;
+    //this.shipments$=this.filteredShipments$;
     
     
   }
 
 
 sortingBydesc(){
-    this.filteredShipments$=this.shipments$.pipe(map((s2)=> s2.sort((a:Shipment,b:Shipment)=>b.sender.toLocaleLowerCase().localeCompare(a.sender))));
+   this.filteredShipments$=this.shipments$.pipe(map((data)=>data.sort((a:Shipment,b:Shipment)=>a.id.toLowerCase().localeCompare(b.id))));
     // this.shipments$=this.filteredShipments$;
+
+    //this.filteredShipments$ =this.shipments$.pipe(map((data)=>data.sort((a:Shipment,b:Shipment)=>a.id.toLocaleLowerCase().localeCompare(b.id))));
 
 
 }

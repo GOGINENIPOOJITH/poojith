@@ -14,7 +14,7 @@ export class ShipmentService {
 
   addShipment(shipment: Shipment): Observable<any>
   {
-    return this.http.post<any>(this.apiUrl,shipment);
+    return this.http.post(this.apiUrl,shipment);
   }
 
   getShipments(): Observable<any>

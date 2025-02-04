@@ -12,6 +12,7 @@ export class ShipmentFormComponent implements OnInit
  {
   addForm!: FormGroup
   shipmentStatus=['Pending','In-Transit','Delivered'];
+  successMsg:boolean=false;
   constructor(private ss: ShipmentService,private fb: FormBuilder,private router: Router){}
   
  
@@ -50,8 +51,10 @@ export class ShipmentFormComponent implements OnInit
     if(this.addForm.valid)
     {
       this.ss.addShipment(this.addForm.value).subscribe(()=>{
-        this.router.navigate(['/']);
+        this.successMsg=true;
+        
       })
+      this.router.navigate(['/list']);
     }
 
 

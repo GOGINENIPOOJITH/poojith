@@ -9,6 +9,7 @@ import { ShipmentDetailsComponent } from './shipment-details/shipment-details.co
 import { ShipmentUpdateComponent } from './shipment-update/shipment-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ShipmentListComponent,
     ShipmentFormComponent,
     ShipmentDetailsComponent,
-    ShipmentUpdateComponent
+    ShipmentUpdateComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

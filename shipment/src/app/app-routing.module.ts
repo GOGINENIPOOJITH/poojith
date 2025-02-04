@@ -6,7 +6,8 @@ import { ShipmentUpdateComponent } from './shipment-update/shipment-update.compo
 import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
 
 const routes: Routes = [
-  {path:'', component:ShipmentListComponent},
+  {path:'list', component:ShipmentListComponent},
+  // {path:'',redirectTo:'list',pathMatch:'full'},
   {path:'add',component: ShipmentFormComponent},
   {path:'update/:id',component:ShipmentUpdateComponent},
   {path:'view/:id',component: ShipmentDetailsComponent}

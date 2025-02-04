@@ -1,11 +1,12 @@
 <div>
     <h1>SHIPMENT TABLE </h1>
-    <input type="text" placeholder="search by id or sender" [(ngModel)]="searchText" (input)="searchShipment()"/>
+    <input type="text" placeholder="search by id or sender" [(ngModel)]="searchText" />
     <button (click)="sortingByAsc()">Sort By Asc</button>
     <button (click)="sortingBydesc()">Sort By Desc</button>
-    <button [routerLink]="['add']">Add New Shipment</button>
+    <button [routerLink]="['/add']">Add New Shipment</button>
     <table border="1px" >
-        <tr>
+       <thead>
+         <tr>
             <th>Id</th>
             <th>Sender</th>
             <th>Receiver</th>
@@ -17,7 +18,9 @@
             <th>Edit Shipment</th>
             <th>Delete Shipment</th>
         </tr>
-        <tr *ngFor="let shipment of filteredShipments$ | async">
+        </thead>
+        <tbody>
+        <tr *ngFor="let shipment of filteredShipments$ | async | filter : searchText">
             <td>{{shipment.id}}</td>
             <td>{{shipment.sender}}</td>
             <td>{{shipment.receiver}}</td>
@@ -29,5 +32,6 @@
             <td><button [routerLink]="['/update/',shipment.id]">Edit</button></td>
             <td><button (click)="deleteShipment(shipment.id)">Delete</button></td>
         </tr>
+        </tbody>
     </table>
 </div>
